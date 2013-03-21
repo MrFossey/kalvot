@@ -1,51 +1,111 @@
-
-\documentclass[slidestop,dvips]{beamer}
-\usepackage{beamerthemesplit}
-\usepackage{graphics}
-\usepackage{pstricks}
-
-
-\title{Latex template for making slides}
-\author{Brian Reich}
-
-
+% This text is proprietary.
+% It's a part of presentation made by myself.
+% It may not used commercial.
+% The noncommercial use such as private and study is free
+% Sep. 2005 
+% Author: Sascha Frank 
+% University Freiburg 
+% www.informatik.uni-freiburg.de/~frank/
+% additional use of \usepackage{beamerthemesplit}
+\documentclass{beamer}
+\usepackage{beamerthemesplit} % new 
 \begin{document}
+\title{Beamer Class a little nicer} 
+\author{Sascha Frank} 
+\date{\today} 
 
-\frame{
-   \begin{center}
-    \huge{Template for slides in Latex using Beamer}\\
-    \vspace{48pt}
-    \Large{ST810}\\
-    \vspace{24pt}
-    \large{\today}
-  \end{center}
+\frame{\titlepage} 
+
+\frame{\frametitle{Table of contents}\tableofcontents} 
+
+
+\section{Section no.1} 
+\frame{\frametitle{Title} 
+Each frame should have a title.
 }
-
-\frame{\frametitle{Including a plot}
- \begin{center}
-  \includegraphics[height=2in]{dental.ps}\\
-  {\bf \red Dental trajectories for 27 children:}
- \end{center}
-}
-
-\frame{\frametitle{Creating .pdf slides in WinEdt}
-
- \begin{itemize}
-   \item LaTeX [Shift-Control-L]\vspace{12pt}
-   \item dvi2pdf [click the button]\vspace{24pt}
-  \end{itemize}
-  To print 4 slides per page in acrobat click\vspace{12pt}
-   \begin{itemize}
-   \item File/print/properties\vspace{12pt}
-   \item Change ``pages per sheet'' to 4\vspace{12pt}
-  \end{itemize}
-}
-
-\frame{
-  \begin{center}
-    {\Huge \red The end}
-  \end{center}
+\subsection{Subsection no.1.1  }
+\frame{ 
+Without title somethink is missing. 
 }
 
 
+\section{Section no. 2} 
+\subsection{Lists I}
+\frame{\frametitle{unnumbered lists}
+\begin{itemize}
+\item Introduction to  \LaTeX  
+\item Course 2 
+\item Termpapers and presentations with \LaTeX 
+\item Beamer class
+\end{itemize} 
+}
+
+\frame{\frametitle{lists with pause}
+\begin{itemize}
+\item Introduction to  \LaTeX \pause 
+\item Course 2 \pause 
+\item Termpapers and presentations with \LaTeX \pause 
+\item Beamer class
+\end{itemize} 
+}
+
+\subsection{Lists II}
+\frame{\frametitle{numbered lists}
+\begin{enumerate}
+\item Introduction to  \LaTeX  
+\item Course 2 
+\item Termpapers and presentations with \LaTeX 
+\item Beamer class
+\end{enumerate}
+}
+\frame{\frametitle{numbered lists with pause}
+\begin{enumerate}
+\item Introduction to  \LaTeX \pause 
+\item Course 2 \pause 
+\item Termpapers and presentations with \LaTeX \pause 
+\item Beamer class
+\end{enumerate}
+}
+
+\section{Section no.3} 
+\subsection{Tables}
+\frame{\frametitle{Tables}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Date} & \textbf{Instructor} & \textbf{Title} \\
+\hline
+WS 04/05 & Sascha Frank & First steps with  \LaTeX  \\
+\hline
+SS 05 & Sascha Frank & \LaTeX \ Course serial \\
+\hline
+\end{tabular}}
+
+
+\frame{\frametitle{Tables with pause}
+\begin{tabular}{c c c}
+A & B & C \\ 
+\pause 
+1 & 2 & 3 \\  
+\pause 
+A & B & C \\ 
+\end{tabular} }
+
+
+\section{Section no. 4}
+\subsection{blocs}
+\frame{\frametitle{blocs}
+
+\begin{block}{title of the bloc}
+bloc text
+\end{block}
+
+\begin{exampleblock}{title of the bloc}
+bloc text
+\end{exampleblock}
+
+
+\begin{alertblock}{title of the bloc}
+bloc text
+\end{alertblock}
+}
 \end{document}
