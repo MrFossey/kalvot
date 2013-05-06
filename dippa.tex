@@ -100,8 +100,39 @@ Tutkimuskysymykset: \pause
 % The third empirical part consists of a proof of concept and initial results. The organization scale implementation is not in the scope of the thesis. Issues that arise during the third part will be discussed. The third research question also includes evaluation how the end solution meets previously defined criteria. 
 
 \section{Tutkimuksen rakenne}
-% Taustat, frameworkit, framework osat, uusi framework, koe, tulokset, johtopäätökset ja discussion.
+% Taustat, frameworkit, framework osat, uusi framework, koe, tulokset, johtopäätökset ja discussion.\begin{figure}
 \frame{\frametitle{Tutkimuksen rakenne}
+\centering
+\begin{tikzpicture} [
+   start chain=going below,        % General flow is top-to-bottom
+    node distance=2mm and 20mm,    % Global setup of box spacing
+    ]
+% ------------------------------------------------- 
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=2ex},
+  rect/.style={base, rectangle, minimum height=2em, text width=3em},
+  bus/.style={base, rectangle, minimum width=15em, text width=4em},
+  line/.style={draw, thick, -latex'},
+}
+    \node [rect] (p0) {Taustat};
+    \node [rect] (p1) {Frameworkit};
+    \node [rect] (p2) {Framework-komponentit};
+    \node [rect] (p3) {Uusi framework};
+    \node [rect] (p4) {Proof of Concept};
+    \node [rect] (p5) {Tulokset};
+    \node [rect] (p6) {Johtopäätökset};
+  
+    \path [line] (p0) -- (p3);
+    \path [line] (p1) -- (p2);
+    \path [line] (p2) -- (p3);
+    \path [line] (p3) -- (p4);
+    \path [line] (p4) -- (p5);
+    \path [line] (p5) -- (p6);
+    
+\end{tikzpicture}
+\caption{Tutkimuksen rakenne} \label{fig:rakenne}
+\end{figure}
+
 
 }
 
