@@ -1,1 +1,138 @@
-teststa dfasfsfasffdsaasdf
+\documentclass{beamer}
+\usepackage[finnish]{babel}
+\usepackage{beamerthemesplit} % new 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\usepackage[round]{natbib}
+
+\begin{document}
+\title{Diplomityövertailu} 
+\subtitle{Teemu Partanen: Prerequisites for successful software maintenance and a reference model of the maintenenace processes}
+\author{Antti Heikkonen} 
+\date{\today}
+
+\frame{\titlepage} 
+
+\frame{\frametitle{Sisältö}\tableofcontents} 
+
+\section{Työn taustat} 
+
+\frame{\frametitle{Työn tarkoitus} 
+Työssä arvioitiin ohjelmistojen huolto/ylläpitoprosesseja (\emph{software maintenenance processes}) Ixonos Technology Consulting Ltd:lle, joka tarjoaa sekä kehitys-, että ylläpitopalveluita asiakkailleen. \pause
+\\[0.2in]
+Miksi? % dipassa: maksaa (hallinta, kehitys), ei huomioitu tutkimuksessa tai organisaatioissa
+\begin{itemize} 
+\item Toistuva prosessi, jota kannattaa optimoida
+\item Elinkaarinäkökulma: kustannuksia ja (lisä)myyntiä myös toimituksen jälkeen
+\end{itemize}
+}
+% process issues: uniikit vaatimukset ja technical issues: miten käytännössä toteutetaan. viitekehys unohdetaan
+
+% Kysymystö vaikuttaa lavealta ja laajalta. Toisaalta se mukailee työn rakennetta: kappaleet vastaavat työn kysymyksiin. Haiskahtaa jälkeenpäin säädetyltä.
+\frame{\frametitle{Tutkimuskysymykset}
+Tutkimuskysymykset: \pause
+\begin{itemize} %
+\item Mitkä ovat ohjelmistoylläpidon edellyttämät prosessit? \pause
+\item Mitä olemassa olevia ylläpitomalleja on ja miten ne sopivat kohdeyritykseen? \pause
+\item Mitä prosesseja kohdeyritys edellyttää ylläpitomallilta? \pause
+\end{itemize}
+Lisäksi
+\begin{itemize}
+\item Mitä ongelmia on nykyisessä ylläpitomallissa? \pause
+\item Miten ylläpitoa voidaan tukea jo ohjelmiston kehitysvaiheessa ongelmien välttämiseksi? % yhdistää teoriaa ja empiriaa
+\end{itemize}
+}
+
+% suurin ongelma että ei kuvata empiriistä toimenpidettä tarpeeksi tarkasti. mitä uutta luodaan ylläpitomallin tutkimisen ja referenssimallin luonnin ohella. dippa tuntuu enemmänkin selvitykseltä kuin tutkimukselta joka tuottaa uutta tietoa
+
+\frame{\frametitle{Mutta!}
+Työn tavoitetta ei kuvata.
+}
+
+\section{Tutkimuksen rakenne} 
+
+\frame{\frametitle{Tutkimuksen rakenne}
+\begin{figure}
+  \includegraphics[width=6cm]{partanen_tutkimus.png}
+    \caption{Partasen diplomityön rakenne}
+    \label{fig:rakenne}
+\end{figure}
+}
+
+\frame{\frametitle{Tutkimusmenetelmät}
+Tutkimusmenetelminä action research ja konstruktiivinen tutkimus.
+}
+
+\section{Teoria} % Todella helppolukuista ja sujuvasti etenevää, mutta miksi juuri nämä asiat käsitellään.
+\frame{\frametitle{Ohjelmistoylläpidon teoria}
+Yleisten määritelmien ohella teoriaosuus esittelee
+\begin{itemize}
+\item Ylläpitoprosessien typologian, % menetelmät
+\item Palvelunäkökulman ohjelmistoylläpitoon, % suhteet
+\item Elinkaarinäkökulman ohjelmistoihin, % ympäristö
+\item Neljä ylläpidon viitekehystä ja näiden vertailun, % luettele jos jotakuta kiinnostaa
+\end{itemize}
+joista kootaan \bf{referenssimalli}.
+}
+% referenssimallit käydään läpi aika tarkasti, mutta näiden valitsemiselle esitettiin kriteerit/hyvä scope. mallit kuvattu hyvin
+% vertailussakin kriteeristö, joka esitellään, mutta vedetään vähän hatusta . plussaa oli että näitä käytettiin referenssimallin kehittämisessä eivätkä nämä jääneet näin irrallisiksi
+% referenssimallin rakentamista olisi voinut korostaa alussa. tutkimusongelma jää edelleen epämääräiseksi selvittelyksi...
+% referenssimalli käydään läpi todella tarkkaan prosessi prosessilta. tässä oma dippa eroaa aika paljon, vaikka karkea rakenne on sama.
+% rakenneharjoitus
+% lopussa teksti vähän heikkenee (kirjoitettu viimeiseksi? dipan versio ei lopullinen, Huom!)
+
+\frame{\frametitle{Referenssimalli}
+\begin{figure}
+  \includegraphics[width=6cm]{partanen_malli.png}
+    \caption{Ohjelmistoylläpidon referenssimalli}
+    \label{fig:malli}
+\end{figure}
+}
+
+\section{Empiria}
+\frame{\frametitle{Ylläpitomentelmät Ixonosilla}
+Haastatteluihin perustuva selvitys pureutui:
+\begin{itemize}
+\item Ongelmakohtiin valituissa projekteissa,
+\item Ylläpitäjien kokemuksiin,
+\item Asiakasedustajan kokemuksiin
+\end{itemize}
+ja tiivisti tulokset parannusehdotuksiin ja \bf{ylläpidon tarkistuslistaan} \it{(maintainability checklist)}.
+}
+%latistavaa kuulla että ylläpito enimmäkseen inaktiivista
+% neljännen tason väliostikoita eikä kunnon johdatusta sisältöön, ongelmakohdat vain listataan
+
+\frame{\frametitle{Uuden mallin arviointi -workshop}
+
+Referenssimalli esitettiin ylläpitäjille validointiworkshopissa. 
+Tulokset:
+\begin{itemize}
+\item Ehdotuksia uusista prosesseista
+\item Päivitetty refenssimalli % lisätty prosesseja joita ei aiemmin ollut
+\item Referenssimallista johdettu asiakaslähetöinen malli
+\end{itemize}
+}
+
+\section{Yhteenveto}
+
+\frame{\frametitle{Tutkimuksen arviointi}
+Tutkimus täyttää hyvän tutkimuksen kriteerit, mutta referenssimalli kehitetty kohdeyrityksen tarpeisiin, eikä sitä ole sovellettu ja arvioitu päivittäisessä työssä.
+}
+
+\frame{\frametitle{Kokonaisvaikutelma Partasen dipasta}
+Hyvää
+\begin{itemize}
+\item Nopeasti asiaan
+\item Selkeä perusrakenne ja jouheva eteneminen: teoriatutkimus, synteesi, koe, johtopäätökset
+\item Perusteellinen ja analyyttinen käsittely
+\end{itemize}
+\\[0.1in]
+Huonoa
+\begin{itemize}
+\item Epäselvät tavoitteet
+\item Epäselvä johdattelu empiriaan ja palautus takaisin teoriatasolle
+\end{itemize}
+}
+
+\end{document}
