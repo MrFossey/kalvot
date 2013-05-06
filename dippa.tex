@@ -35,13 +35,13 @@
 \centering
 \begin{tikzpicture} [
    start chain=going below,        % General flow is top-to-bottom
-    node distance=4mm and 40mm,    % Global setup of box spacing
+    node distance=2mm and 20mm,    % Global setup of box spacing
     ]
 % ------------------------------------------------- 
 \tikzset{
-  base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
-  rect/.style={base, rectangle, minimum height=4em, text width=6em},
-  bus/.style={base, rectangle, minimum width=30em, text width=8em},
+  base/.style={draw, on chain, on grid, align=center, minimum height=2ex},
+  rect/.style={base, rectangle, minimum height=2em, text width=3em},
+  bus/.style={base, rectangle, minimum width=15em, text width=4em},
   line/.style={draw, thick, -latex'},
 }
     \node [rect, xshift=1.25cm] (s1) {Service 1};
