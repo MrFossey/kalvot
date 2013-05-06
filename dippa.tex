@@ -19,6 +19,47 @@
 \section{Työn taustat} 
 
 \frame{\frametitle{Työn tarkoitus} 
+
+\begin{figure}
+\centering
+\begin{tikzpicture} [
+   start chain=going below,        % General flow is top-to-bottom
+    node distance=4mm and 40mm,    % Global setup of box spacing
+    ]
+% ------------------------------------------------- 
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
+  rect/.style={base, rectangle, minimum height=4em, text width=6em},
+  bus/.style={base, rectangle, minimum width=30em, text width=8em},
+  line/.style={draw, thick, -latex'},
+}
+    \node [rect, xshift=1.25cm] (s1) {Service 1};
+    \node [bus] (esb) {ESB};
+  
+    \node [rect, xshift=-4.00cm] (s21) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white] (s22) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white] (s23) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white, label=below:{System 2}] (s24) {Service};
+    
+    \node [rect, right=of s21] (s31) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white] (s32) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white] (s33) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white, label=below:{System 3}] (s34) {Service};
+    
+    \node [rect, right=of s31] (s41) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white] (s42) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white] (s43) {};
+    \node [rect, xshift=0.25cm, yshift=1.25cm, fill=white, label=below:{System 4}] (s44) {Service};
+  
+    \path [line] (s1) -- (esb);
+    \path [line] (s21) -- (esb);
+    \path [line] (s31) -- (esb);
+    \path [line] (s41) -- (esb);
+    
+\end{tikzpicture}
+\caption{Service-oriented architecture} \label{fig:soa}
+\end{figure}
+
 Työssä selvitetään integraatiotestauksen edellytyksiä ja vaatimuksia. Teorian, valmiiden testausframeworkien \pause
 \\[0.2in]
 Miksi? % dipassa: maksaa (hallinta, kehitys), ei huomioitu tutkimuksessa tai organisaatioissa
