@@ -5,22 +5,10 @@
 \usepackage[T1]{fontenc}
 \usepackage[scaled]{helvet}
 \usepackage[round]{natbib}
-\bibliographystyle{kbib}
-\usepackage{tikz}
-\usepackage{changepage}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows}
-\usetikzlibrary{decorations.pathmorphing,decorations.markings}
-\usetikzlibrary{shapes}
-\usetikzlibrary{patterns}
-\usetikzlibrary{chains}
-\usetikzlibrary{backgrounds, fit}
-
 
 \begin{document}
-\title{IT CAN FELL ROCKETS} 
-\subtitle{or developing an integration testing framework in large power solutions supplier}
+\title{Diplomityövertailu} 
+\subtitle{Teemu Partanen: Prerequisites for successful software maintenance and a reference model of the maintenenace processes}
 \author{Antti Heikkonen} 
 \date{\today}
 
@@ -30,256 +18,88 @@
 
 \section{Työn taustat} 
 
-\frame{\frametitle{Työn tavoite}
-Työn tavoite on kehittää framework-prototyyppi järjestelmien väliseen integraatiotestaukseen.
+\frame{\frametitle{Työn tarkoitus} 
+Työssä arvioitiin ohjelmistojen huolto/ylläpitöprosesseja (\emph{software maintenenance processes}) Ixonos Technology Consulting Ltd:lle, joka tarjoaa ylläpitoratkaisuja Ixonosin kehittämiin ohjelmiin. 
+\\[0.2in]
+Miksi? % dipassa: maksaa (hallinta, kehitys), ei huomiotu tutkimuksessa tai organisaatioissa
+\begin{itemize} 
+\item Toistuva prosessi, jota kannattaa optimoida
+\item Elinkaarinäkökulma: kustannuksia ja (lisä)myyntiä myös toimituksen jälkeen
+\end{itemize}
 }
+% process issues: uniikit vaatimukset ja technical issues: miten käytänössä toteutetaan. viitekehys unohdetaan
 
-% Wärtsilä’s business case is to save development and testing costs by automating test execution and test case creation where possible. Hypothetically, at least, standardizing the testing process, documenting it clearly, and communicating it to related parties contributes to efficiency, too, though only the process design is in the scope of the thesis.
-
-\frame{\frametitle{Työn motivaatio} 
-
-\begin{figure}
-\centering
-\begin{tikzpicture} [
-   start chain=going below,        % General flow is top-to-bottom
-    node distance=2mm and 20mm,    % Global setup of box spacing
-    ]
-% ------------------------------------------------- 
-\tikzset{
-  base/.style={draw, on chain, on grid, align=center, minimum height=2ex},
-  rect/.style={base, rectangle, minimum height=2em, text width=4em},
-  bus/.style={base, rectangle, minimum width=15em, text width=4em},
-  line/.style={draw, thick, -latex'},
-}
-    \node [rect, xshift=0.75cm] (s1) {Service 1};
-    \node [bus] (esb) {ESB};
-  
-    \node [rect, xshift=-1.00cm] (s21) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white] (s22) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white] (s23) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white, label=below:{System 2}] (s24) {Service};
-    
-    \node [rect, right=of s21] (s31) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white] (s32) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white] (s33) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white, label=below:{System 3}] (s34) {Service};
-    
-    \node [rect, right=of s31] (s41) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white] (s42) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white] (s43) {};
-    \node [rect, xshift=0.13cm, yshift=0.75cm, fill=white, label=below:{System 4}] (s44) {Service};
-  
-    \path [line] (s1) -- (esb);
-    \path [line] (s21) -- (esb);
-    \path [line] (s31) -- (esb);
-    \path [line] (s41) -- (esb);
-    
-\end{tikzpicture}
-\caption{Wärtsilän SOA tietojärjestelmäarkkitehtuuri} \label{fig:soa}
-\end{figure}
-Mitä tapahtuu ESB:n (integraation) mustan laatikon sisällä?
-}
-
-% Wärtsilä is a Finnish technology company providing lifecycle power solutions for the marine and energy markets . As is the standard today, Wärtsilä’s operations rely on a number of IT systems under pressure to adapt to changing business requirements and contextual constraints. Testing is necessary to ensure quality and integrate new external systems, but is also recognized as an expensive and time-consuming endeavor – a focal point for improvement.
-
-\frame{\frametitle{Mikä framework?}
-Tässä yhteydessä frameworkilla tarkoitetaan teknistä viitekehystä. Se on IT-maailman prosessikartta.
-% Pureudutaan taskeihin ja suoritusjärjestykseen
-\\[0.1in]
-Pèzze et al: "a circuit board with empty slots for components"
-\\[0.1in]
-% Diplomityö on ohje miekan takomiselle, ei sen käyttämiselle.
-}
-
+% Kysymystö vaikuttaa lavealta ja laajalta. Toisaalta se mukailee työn rakennetta: kappaleet vastaavat työn kysymyksiin. Haiskahtaa jälkeenpäin säädetyltä.
 \frame{\frametitle{Tutkimuskysymykset}
-Tutkimuskysymykset:
+Tutkimuskysymykset: \pause
 \begin{itemize} %
-\item Minkälaisia vaatimuksia integraatiotestausprosessilla on?
-\item Miten framework pitäisi rakentaa Wärtsilän omien ja yleisten testausvaatimusten, sekä teknisen ympäristön valossa?
+\item Mitkä ovat ohjelmistoylläpidon edellyttämät prosessit? \pause
+\item Mitä olemassa olevia ylläpitomalleja on ja miten ne sopivat kohderitykseen? \pause
+\item Mitä prosesseja kohdeyritys edellyttää ylläpitomallilta? \pause
+\end{itemize}
+Lisäksi
+\begin{itemize}
+\item Mitä ongelmia on nykyisessä ylläpitomallissa? \pause
+\item Miten ylläpitoa voidaan tukea jo ohjelmiston kehitysvaiheessa ongelmien välttämiseksi? % yhdistää teoriaa ja empiriaa
 \end{itemize}
 }
 
-% The third empirical part consists of a proof of concept and initial results. The organization scale implementation is not in the scope of the thesis. Issues that arise during the third part will be discussed. The third research question also includes evaluation how the end solution meets previously defined criteria. 
+% suurin ongelma että ei kuvata empiriivistä toimenpidettä tarpeeksi tarkasti. mitä uutta luodaan ylläpitomallin tutkimisen ja referenssimallin luonnin ohella. dippa tuntuu enemmänkin selvitykseltä kuin tutkimukselta joka tuottaa uutta tietoa
 
-\section{Tutkimuksen rakenne}
-% Taustat, frameworkit, framework osat, uusi framework, koe, tulokset, johtopäätökset ja discussion.\begin{figure}
+\frame{\frametitle{Mutta!}
+Työn tavoitetta ei kuvata.
+}
+
+\section{Tutkimuksen rakenne} 
+
 \frame{\frametitle{Tutkimuksen rakenne}
-
 \begin{figure}
-\centering
-\begin{tikzpicture} [
-   start chain=going below,        % General flow is top-to-bottom
-    node distance=4mm and 20mm,    % Global setup of box spacing
-    ]
-% ------------------------------------------------- 
-\tikzset{
-  base/.style={draw, on chain, on grid, align=center, minimum height=2ex},
-  rect/.style={base, minimum height=2em, rectangle, text width=8em},
-  bus/.style={base, rectangle, minimum width=15em, text width=4em},
-  line/.style={draw, thick, -latex'},
-}
-    
-    \node [rect, yshift=1.0cm] (p1) {Testaus-frameworkit (Teoria)};
-    \node [rect] (p2) {Framework-komponentit (Analyysi)};
-    \node [rect] (p3) {Uusi framework (Synteesi)};
-    \node [rect, right=of p1, xshift=2.0cm] (p4) {Proof of Concept (Empiria)};
-    \node [rect, right=of p2, xshift=2.0cm] (p5) {Tulokset};
-    \node [rect, right=of p3, xshift=2.0cm] (p6) {Johtopäätökset};
-    \node [rect, left=of p3, xshift=-2.0cm] (p0) {Taustat (Vaatimukset};
-  
-    \path [line] (p0) -- (p3);
-    \path [line] (p1) -- (p2);
-    \path [line] (p2) -- (p3);
-    \path [line] (p3) -- (p4);
-    \path [line] (p4) -- (p5);
-    \path [line] (p5) -- (p6);
-    
-\end{tikzpicture}
-\caption{Tutkimuksen rakenne} \label{fig:rakenne}
-\end{figure}
-
-}
-\section{Tutkimusmenetelmät}
-\frame{\frametitle{Analyysin viitekehys}
-\begin{figure}[H]
-\centering
-\begin{tikzpicture} [ 
-   start chain=going below,         % General flow is top-to-bottom
-    node distance=10mm and 50mm,    % Global setup of box spacing
-    thick,scale=0.6, every node/.style={transform shape}
-    ]
-% ------------------------------------------------- 
-\tikzset{
-  base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
-  rect/.style={base, rectangle, minimum height=2em, text width=6em},
-  line/.style={draw, thick, -latex'},
-  dots/.style={draw, dotted, -latex'}
-}
-
-    \draw[semithick] (-5,0) arc (180:0:2 and 0.5);                  % cone 1: top ellipse top arc
-    \draw[dashed,color=gray] (-3.5,-5) arc (180:0:0.5 and 0.25);    % cone 1: bottom ellipse top arc
-    \draw[semithick] (-3.5,-5) arc (-180:0:0.5 and 0.25);           % cone 1: bottom ellipse bottom arc
-    \draw[semithick] (-5,0) arc (-180:0:2 and 0.5);                 % cone 1: top ellipse bottom arc
-    \draw[semithick] (-5,0) -- (-3.50,-5);                          % cone 1: left side
-    \draw[semithick] (-1,0) -- (-2.50,-5);                          % cone 1: right side
-    
-    \draw[semithick] (0,0) arc (180:0:2 and 0.5);                   % cone 2: top ellipse top arc
-    \draw[dashed, color=gray] (1.5,-5) arc (180:0:0.5 and 0.25);    % cone 2: bottom ellipse top arc
-    \draw[semithick] (1.5,-5) arc (-180:0:0.5 and 0.25);            % cone 2: bottom ellipse bottom arc
-    \draw[semithick] (0,0) arc (-180:0:2 and 0.5);                  % cone 2: top ellipse bottom arc
-    \draw[semithick] (0,0) -- (1.5,-5);                             % cone 2: left side
-    \draw[semithick] (4,0) -- (2.5,-5);                             % cone 2: right side
-
-    \draw[semithick] (5,0) arc (180:0:2 and 0.5);                   % cone 3: top ellipse top arc
-    \draw[dashed, color=gray] (6.5,-5) arc (180:0:0.5 and 0.25);    % cone 3: bottom ellipse top arc
-    \draw[semithick] (6.5,-5) arc (-180:0:0.5 and 0.25);            % cone 3: bottom ellipse bottom arc
-    \draw[semithick] (5,0) arc (-180:0:2 and 0.5);                  % cone 3: top ellipse bottom arc
-    \draw[semithick] (5,0) -- (6.5,-5);                             % cone 3: left side
-    \draw[semithick] (9,0) -- (7.5,-5);                             % cone 3: right side
-
-    \node [rect, xshift=-3.0cm, yshift=1.5cm, fill=white] (stg) {Strategy};
-    \node [rect, yshift=0.25cm, fill=white] (req) {Requirements \& input};
-    \node [rect, yshift=-0.75cm, fill=white] (prc) {Process};
-    \node [rect, yshift=-1.4cm, fill=white] (rlt) {Results};
-    
-    \node [rect, right=of stg, fill=white] (fmw) {Framework};
-    \node [rect, right=of req, fill=white] (tcg) {Test generation};
-    \node [rect, right=of prc, fill=white] (run) {Running tests};
-    \node [rect, right=of rlt, fill=white] (mon) {Monitoring/ verification};
-    
-    \node [rect, right=of fmw, fill=white] (art) {Objects};
-    \node [rect, right=of tcg, fill=white] (tcs) {Test cases};
-    \node [rect, right=of run, fill=white] (exe) {Execution engine};
-    \node [rect, right=of mon, fill=white] (out) {Testing oracle};
-    
-  %  \node [rect, below=of mon, yshift=-1.0cm, fill=white] (pit) {Pitfalls};
-     
-    \path [line] (stg) -- (fmw);
-    \path [line] (fmw) -- (stg);
-    \path [line] (fmw) -- (art);
-    \path [line] (art) -- (fmw);
-    
-    \path [line] (stg) -- (req);
-    \path [line] (req) -- (prc);
-    \path [line] (prc) -- (rlt);
-    
-    \path [line] (art) -- (tcs);
-    \path [line] (tcs) -- (exe);
-    \path [line] (exe) -- (out);
-    
-    \path [line] (fmw) -- (tcg);
-    \path [line] (tcg) -- (run);
-    \path [line] (run) -- (mon);
-    
-    \path [dots] (run) -- (prc);
-    \path [dots] (prc) -- (run);
-    \path [dots] (run) -- (exe);
-    \path [dots] (exe) -- (run);
-    
-    \path [dots] (req) -- (tcg);
-    \path [dots] (tcg) -- (req);
-    \path [dots] (tcg) -- (tcs);
-    \path [dots] (tcs) -- (tcg);
-    
-    \path [dots] (rlt) -- (mon);
-    \path [dots] (mon) -- (rlt);
-    \path [dots] (mon) -- (out);
-    \path [dots] (out) -- (mon);
- 
-\end{tikzpicture}
-\caption{Integraatiotestaustasot} \label{fig:funnel}
+  \includegraphics[width=6cm]{partanen_tutkimus.png}
+    \caption{Partasen diplomityön rakenne}
+    \label{fig:rakenne}
 \end{figure}
 }
 
-\frame{\frametitle{Konstruktiivinen tutkimusmenetelmä}
-Tarkoitus on tuottaa uusia hypoteeseja ja teorioita ja testata näitä käytännössä. 
-\\[0.1in]
-Konstruktiivinen tutkmus painottaa käytännönläheisyyttä ja sovellettavuutta ottaen huomioon laatu-, kustannus- ja ajatasaisuustekijät.
+\frame{\frametitle{Tutkimusmenetelmät}
+Tutkimusmenetelminä action research ja konstruktiivinen tutkimus.
 }
 
-\section{Aikataulu}
-\frame{\frametitle{Aikataulu}
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=5cm]{schedule.png}
-    \caption{Dipan aikataulu}
-    \label{fig:aikataulu}
-  \end{center}
-\end{figure}
+\section{Teoria} % Todella helppolukuista ja sujuvasti etenevää, mutta miksi juuri nämä asiat käsitellään.
+\frame{\frametitle{Ohjelmistoylläpidon teoria}
+Yleisten määritelmien ohella teoriaosuus esittelee
+\begin{itemize}
+\item Ylläpitoprosessien typologian, % mentelmät
+\item Palvelunäkökulman ohjelmistoylläpitöön, % suhteet
+\item Elinkaarinäkökulman ohjelmistoihin, % ympäristö
+\item Neljä ylläpidon viitekehystä ja näiden vertailun, % luettele jos jotakuta kiinnostaa
+\end{itemize}
+joista kootaan \bf{referenssimalli}.
+}
+% referenssimallit käydään läpi aika tarkasti, mutta näiden valitsemiselle esitettiin kriteerit/hyvä scope. mallit kuvattu hyvin
+% vertailussakin kriteeristö, joka esitellään, mutta vedetään vähän hatusta . plussaa oli että näitä käytettiin referenssimallin kehittämisessä eivätkä nämä jääneet näin irrallisiksi
+% referenssimallin rakentamista olisi voinut korostaa alussa. tutkimusongelma jää edelleen epämääräiseksi selvittelyksi...
+% referenssimalli käydään läpi todella tarkkaan prosessi prosessilta. tässä oma dippa eroaa aika paljon, vaikka karkea rakenne on sama
+% rakenneharjoitus
+% lopussa teksti vähän heikkenee (kirjotettu viimeiseksi? dipan versio ei lopullinen, Huom!)
+
+\section{Empiria}
+\frame{\frametitle{Ohjelmistoylläpito Ixonosilla}
+Haastatteluihin perustuva selvitys pureutui:
+\begin{itemize}
+\item Onglmakohtiin valituissa projekteissa
+\end{itemize}
+ja tiivsiti tulokset \bf{ylläpidon tarkistuslistaan} \it{(maintanability checklist)}.
+}
+%latistavaa kuulla että ylläpito enimmäkseen inaktiivista
+% neljännen tason väliostikoita eikä kunnon johdatusta sisältöön, ongelmakohdat vain listataan
+
+\frame{\frametitle{Uuden mallin arviointi-workshop}
+
 }
 
-\section{Bibliografia}
-\begin{frame}[allowframebreaks]{Valikoitu bibliografia} 
-\tiny
-Abdullah, Khalil; Kimble, Jim, and White, Lee. Correcting for unreliable regression integration testing. In Software Maintenance, 1995. Proceedings.,International Conference on, pages 232-241. IEEE, 1995.
-\\[0.1in]
-Benz, Sebastian. Combining test case generation for component and integration testing. In Proceedings of the 3rd international workshop on Advances in model-based testing, pages 23-33. ACM, 2007.
-\\[0.1in]
-Bhuyan, Prachet; Kashyap, Chandra Prakash, and Mohapatra, Durga Prasad. A survey of regression testing in SOA. International Journal of Computer Applications, 44(19):22-25, April 2012. Published by Foundation of Computer Science, New York, USA.
-\\[0.1in]
-Duvall, Paul M; Matyas, Steve, and Glover, Andrew. Continuous integration:
-improving software quality and reducing risk. Addison-Wesley Professional,
-2007.
-\\[0.1in]
-Fewster, Mark and Graham, Dorothy. Software test automation: effective use of
-test execution tools. ACM Press/Addison-Wesley Publishing Co., 1999.
-\\[0.1in]
-Huang, He Yuan; Liu, He Hui; Li, Zhong Jie, and Zhu, Jun. Surrogate: A simulation apparatus for continuous integration testing in service oriented architecture. In Services Computing, 2008. SCC'08. IEEE International Conference on, volume 2, pages 223-230. IEEE, 2008.
-\\[0.1in]
-Jenkins, Nick. A software testing primer. An Introduction to Software testing, e-book, 2008.
-\\[0.1in]
-Myers, Glenford J. Software reliability: principles and practices. Wiley, 1976.
-Pezzè, Mauro and Young, Michal. Software testing and analysis: process, principles, and techniques. John Wiley & Sons Inc, 2008.
-\\[0.1in]
-Laukkanen, Pekka. Data-driven and keyword-driven test automation frameworks. Master’s thesis, Helsinki University of Technology, 2006.
-\\[0.1in]
-Leung, Hareton KN and White, Lee. A study of integration testing and software regression at the integration level. In Software Maintenance, 1990.,Proceedings., Conference on, pages 290-301. IEEE, 1990.
-\\[0.1in]
-Linnenkugel, Ursula and Mullerburg, Monika. Test data selection criteria for (software) integration testing. In Systems Integration, 1990. Systems Integration'90., Proceedings of the First International Conference on, pages 709-717. IEEE, 1990.
-\\[0.1in]
-Rehman, Jaffar-ur; Jabeen, Fakhra; Bertolino, Antonia; Polini, Andrea, and others, . Testing software components for integration: a survey of issues and techniques. Software Testing, Veriﬁcation and Reliability, 17(2):95–133,
-2007.
-%\bibliography{ref} 
-\end{frame} 
+\section{Yhteenveto}
+\frame{\frametitle{Kokonaisvaikutelma Partasen dipasta}
+Työssä mentiin kiitettävän nopeasti asiaan. Rakenne oli selkeä ja eteni aihepiirin yleisestä esittelystä malleihin, ja näiden analyysiin ja lopuksi synteesiin uudesta toimintamallista. Kaksi viimesitä kappaletta empiirisestä tutkimuksesta olisi voinut jakaa tai pohjustaa paremmin. Kaartaa takaisin teoriaan joutuu etsimään. Voin kuitenkin hyödyntää tutkimuksen rakennetta omassa työssäni.
+}
 
 \end{document}
