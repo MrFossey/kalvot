@@ -37,7 +37,7 @@ Tarkoitus on tuottaa uusia hypoteeseja ja teorioita ja testata näitä käytänn
 \\[0.1in]
 Konstruktiivinen tutkmus painottaa käytännönläheisyyttä ja sovellettavuutta ottaen huomioon laatu-, kustannus- ja ajatasaisuustekijät.
 }
-
+\begind{comment}
 \begin{figure}[H]
 \centering
 \begin{tikzpicture} [ 
@@ -125,9 +125,43 @@ Konstruktiivinen tutkmus painottaa käytännönläheisyyttä ja sovellettavuutta
 \end{tikzpicture}
 \caption{Process levels in integration testing} \label{fig:funnel}
 \end{figure}
+\end{comment}
 
 \frame{\frametitle{Diplomityön rakenne}
-Rakenne
+\begin{figure}
+\centering
+\begin{tikzpicture} [
+   start chain=going below,        % General flow is top-to-bottom
+    node distance=4mm and 20mm,    % Global setup of box spacing
+    ]
+% ------------------------------------------------- 
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=2ex},
+  rect/.style={base, minimum height=2em, rectangle, text width=8em},
+  bus/.style={base, rectangle, minimum width=15em, text width=4em},
+  line/.style={draw, thick, -latex'},
+}
+    
+    \node [rect, yshift=1.0cm] (p1) {Testaus-frameworkit (Teoria)};
+    \node [rect] (p2) {Framework-komponentit (Analyysi)};
+    \node [rect] (p3) {Uusi framework (Synteesi)};
+    \node [rect, right=of p1, xshift=2.0cm] (p4) {Proof of Concept (Empiria)};
+    \node [rect, right=of p2, xshift=2.0cm] (p5) {Tulokset};
+    \node [rect, right=of p3, xshift=2.0cm] (p6) {Johtopäätökset};
+    \node [rect, left=of p3, xshift=-2.0cm] (p0) {Taustat (Vaatimukset};
+  
+    \path [line] (p0) -- (p3);
+    \path [line] (p1) -- (p2);
+    \path [line] (p2) -- (p3);
+    \path [line] (p3) -- (p4);
+    \path [line] (p4) -- (p5);
+    \path [line] (p5) -- (p6);
+    
+\end{tikzpicture}
+\caption{Tutkimuksen rakenne} \label{fig:rakenne}
+\end{figure}
+
+}
 }
 
 \section{Taustat} 
