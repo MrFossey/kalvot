@@ -30,11 +30,102 @@ Työn tavoite on kehittää framework-prototyyppi järjestelmien väliseen integ
 \end{itemize}
 }
 
-
 \section{Tutkimusmenetelmät} 
 
 \frame{\frametitle{Tutkimusmenetelmät} % nopeasti läpi, näytä kuva
-Mentelmät
+Tarkoitus on tuottaa uusia hypoteeseja ja teorioita ja testata näitä käytännössä. 
+\\[0.1in]
+Konstruktiivinen tutkmus painottaa käytännönläheisyyttä ja sovellettavuutta ottaen huomioon laatu-, kustannus- ja ajatasaisuustekijät.
+}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture} [ 
+   start chain=going below,         % General flow is top-to-bottom
+    node distance=10mm and 50mm,    % Global setup of box spacing
+    thick,scale=0.6, every node/.style={transform shape}
+    ]
+% ------------------------------------------------- 
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
+  rect/.style={base, rectangle, minimum height=2em, text width=6em},
+  line/.style={draw, thick, -latex'},
+  dots/.style={draw, dotted, -latex'}
+}
+
+    \draw[semithick] (-5,0) arc (180:0:2 and 0.5);                  % cone 1: top ellipse top arc
+    \draw[dashed,color=gray] (-3.5,-5) arc (180:0:0.5 and 0.25);    % cone 1: bottom ellipse top arc
+    \draw[semithick] (-3.5,-5) arc (-180:0:0.5 and 0.25);           % cone 1: bottom ellipse bottom arc
+    \draw[semithick] (-5,0) arc (-180:0:2 and 0.5);                 % cone 1: top ellipse bottom arc
+    \draw[semithick] (-5,0) -- (-3.50,-5);                          % cone 1: left side
+    \draw[semithick] (-1,0) -- (-2.50,-5);                          % cone 1: right side
+    
+    \draw[semithick] (0,0) arc (180:0:2 and 0.5);                   % cone 2: top ellipse top arc
+    \draw[dashed, color=gray] (1.5,-5) arc (180:0:0.5 and 0.25);    % cone 2: bottom ellipse top arc
+    \draw[semithick] (1.5,-5) arc (-180:0:0.5 and 0.25);            % cone 2: bottom ellipse bottom arc
+    \draw[semithick] (0,0) arc (-180:0:2 and 0.5);                  % cone 2: top ellipse bottom arc
+    \draw[semithick] (0,0) -- (1.5,-5);                             % cone 2: left side
+    \draw[semithick] (4,0) -- (2.5,-5);                             % cone 2: right side
+
+    \draw[semithick] (5,0) arc (180:0:2 and 0.5);                   % cone 3: top ellipse top arc
+    \draw[dashed, color=gray] (6.5,-5) arc (180:0:0.5 and 0.25);    % cone 3: bottom ellipse top arc
+    \draw[semithick] (6.5,-5) arc (-180:0:0.5 and 0.25);            % cone 3: bottom ellipse bottom arc
+    \draw[semithick] (5,0) arc (-180:0:2 and 0.5);                  % cone 3: top ellipse bottom arc
+    \draw[semithick] (5,0) -- (6.5,-5);                             % cone 3: left side
+    \draw[semithick] (9,0) -- (7.5,-5);                             % cone 3: right side
+
+    \node [rect, xshift=-3.0cm, yshift=1.5cm, fill=white] (stg) {Strategy};
+    \node [rect, yshift=0.25cm, fill=white] (req) {Requirements \& input};
+    \node [rect, yshift=-0.75cm, fill=white] (prc) {Process};
+    \node [rect, yshift=-1.4cm, fill=white] (rlt) {Results};
+    
+    \node [rect, right=of stg, fill=white] (fmw) {Framework};
+    \node [rect, right=of req, fill=white] (tcg) {Test generation};
+    \node [rect, right=of prc, fill=white] (run) {Running tests};
+    \node [rect, right=of rlt, fill=white] (mon) {Monitoring/ verification};
+    
+    \node [rect, right=of fmw, fill=white] (art) {Objects};
+    \node [rect, right=of tcg, fill=white] (tcs) {Test cases};
+    \node [rect, right=of run, fill=white] (exe) {Execution engine};
+    \node [rect, right=of mon, fill=white] (out) {Testing oracle};
+    
+  %  \node [rect, below=of mon, yshift=-1.0cm, fill=white] (pit) {Pitfalls};
+     
+    \path [line] (stg) -- (fmw);
+    \path [line] (fmw) -- (stg);
+    \path [line] (fmw) -- (art);
+    \path [line] (art) -- (fmw);
+    
+    \path [line] (stg) -- (req);
+    \path [line] (req) -- (prc);
+    \path [line] (prc) -- (rlt);
+    
+    \path [line] (art) -- (tcs);
+    \path [line] (tcs) -- (exe);
+    \path [line] (exe) -- (out);
+    
+    \path [line] (fmw) -- (tcg);
+    \path [line] (tcg) -- (run);
+    \path [line] (run) -- (mon);
+    
+    \path [dots] (run) -- (prc);
+    \path [dots] (prc) -- (run);
+    \path [dots] (run) -- (exe);
+    \path [dots] (exe) -- (run);
+    
+    \path [dots] (req) -- (tcg);
+    \path [dots] (tcg) -- (req);
+    \path [dots] (tcg) -- (tcs);
+    \path [dots] (tcs) -- (tcg);
+    
+    \path [dots] (rlt) -- (mon);
+    \path [dots] (mon) -- (rlt);
+    \path [dots] (mon) -- (out);
+    \path [dots] (out) -- (mon);
+ 
+\end{tikzpicture}
+\caption{Integraatiotestaustasot} \label{fig:funnel}
+\end{figure}
 }
 
 \frame{\frametitle{Diplomityön rakenne}
