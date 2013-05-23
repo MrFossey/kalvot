@@ -246,6 +246,7 @@ Vaatimukset perustuvat \textbf{teoriaan} ja Wärtsilän asiantuntijoiden \textbf
 \node [proc, right=of f1] (p1) {Verification};
 \node [file, right=of e0] (f2) {Exe-cution trace};
 \node [proc, right=of s1] (p2) {Trace collecting};
+\node [proc, right=of s1] (p3) {Surrogate generation};
 
 \path [line] (s0) -- (p0);
 \path [line] (p0) -- (f1);
@@ -258,6 +259,7 @@ Vaatimukset perustuvat \textbf{teoriaan} ja Wärtsilän asiantuntijoiden \textbf
 \path [line] (s1) -- (p2);
 \path [line] (p2) -- (f2);
 \path [line] (f2) -- (p1);
+\path [line] (p3) -- (p2);
 
 \end{tikzpicture}
 \caption{Framework-hypoteesi} \label{fig:UTF}
