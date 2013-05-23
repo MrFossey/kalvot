@@ -43,7 +43,6 @@ Konstruktiivinen tutkmus painottaa käytännönläheisyyttä ja sovellettavuutta
 \begin{tikzpicture} [ 
    start chain=going below,         % General flow is top-to-bottom
     node distance=10mm and 50mm,    % Global setup of box spacing
-    thick,scale=0.6, every node/.style={transform shape}
     ]
 % ------------------------------------------------- 
 \tikzset{
@@ -79,17 +78,17 @@ Konstruktiivinen tutkmus painottaa käytännönläheisyyttä ja sovellettavuutta
     \node [rect, yshift=-0.75cm, fill=white] (prc) {Process};
     \node [rect, yshift=-1.4cm, fill=white] (rlt) {Results};
     
-    \node [rect, right=of stg, fill=white] (fmw) {Framework};
-    \node [rect, right=of req, fill=white] (tcg) {Test generation};
+    \node [rect, right=of stg, fill=white] (fmw) {Process structure};
+    \node [rect, right=of req, fill=white] (tcg) {Test/surrogate generation};
     \node [rect, right=of prc, fill=white] (run) {Running tests};
     \node [rect, right=of rlt, fill=white] (mon) {Monitoring/ verification};
     
     \node [rect, right=of fmw, fill=white] (art) {Objects};
     \node [rect, right=of tcg, fill=white] (tcs) {Test cases};
     \node [rect, right=of run, fill=white] (exe) {Execution engine};
-    \node [rect, right=of mon, fill=white] (out) {Testing oracle};
+    \node [rect, right=of mon, fill=white] (out) {Test oracle};
     
-  %  \node [rect, below=of mon, yshift=-1.0cm, fill=white] (pit) {Pitfalls};
+   % \node [rect, below=of mon, yshift=-1.0cm, fill=white] (pit) {Pitfalls};
      
     \path [line] (stg) -- (fmw);
     \path [line] (fmw) -- (stg);
@@ -124,9 +123,8 @@ Konstruktiivinen tutkmus painottaa käytännönläheisyyttä ja sovellettavuutta
     \path [dots] (out) -- (mon);
  
 \end{tikzpicture}
-\caption{Integraatiotestaustasot} \label{fig:funnel}
+\caption{Process levels in integration testing} \label{fig:funnel}
 \end{figure}
-}
 
 \frame{\frametitle{Diplomityön rakenne}
 Rakenne
