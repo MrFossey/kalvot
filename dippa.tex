@@ -176,12 +176,62 @@ Konstruktiivinen tutkmus painottaa käytännönläheisyyttä ja sovellettavuutta
     \path [dots] (out) -- (mon);
  
 \end{tikzpicture}
-\caption{Process levels in integration testing} \label{fig:funnel}
+\caption{Integraatiotestauksen prosessitasot} \label{fig:funnel}
 \end{figure}
 }
 
-\frame{\frametitle{Wärtsilä}
-Wärtsilä
+frame{\frametitle{Uusi testausprosessi}
+\begin{figure}[H]
+\centering
+% =================================================
+\pgfdeclarelayer{marx}
+\pgfsetlayers{main,marx}
+\xdefinecolor{lightgrey}{RGB}{220,220,220}
+\xdefinecolor{blackish}{RGB}{30,30,30}
+% -------------------------------------------------
+% Start the picture
+\begin{tikzpicture}[
+    start chain=going below,    % General flow is top-to-bottom
+    node distance=6mm and 50mm, % Global setup of box spacing
+    ]
+% ------------------------------------------------- 
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
+  proc/.style={base, rectangle, minimum height=4em, text width=7em},
+  sut/.style={base, circle, text width=5em, fill = blackish, text = white},
+  syst/.style={base, cylinder, shape border rotate=90,  aspect=.2, minimum height=5em, text width=5em},
+  file/.style={base, rectangle, shape border rotate=90, minimum height=5em, text width=3em, fill = lightgrey},
+  data/.style={base, trapezium, trapezium left angle=70, trapezium right angle=-70, minimum height=1cm}, 
+  line/.style={draw, thick, -latex'}
+}
+% -------------------------------------------------
+% Placing the nodes
+\node [data] (s0) {Production};
+\node [proc] (p0) {Integration test case generation};
+\node [file] (f1) {Test case};
+\node [syst] (e0) {Test case execution engine};
+\node [sut] (s1) {System under test};
+\node [syst] (e1) {Surrogate engine};
+\node [file, right=of s0] (f0) {Model};
+\node [proc, right=of f1] (p1) {Verification};
+\node [file, right=of e0] (f2) {Exe-cution trace};
+\node [proc, right=of s1] (p2) {Trace collecting};
+
+\path [line] (s0) -- (p0);
+\path [line] (p0) -- (f1);
+\path [line] (f1) -- (e0);
+\path [line] (e0) -- (s1);
+\path [line] (s1) -- (e1);
+\path [line] (f0) -- (p0);
+\path [line] (f1) -- (p1);
+\path [line] (p1) -- (e0);
+\path [line] (s1) -- (p2);
+\path [line] (p2) -- (f2);
+\path [line] (f2) -- (p1);
+
+\end{tikzpicture}
+\caption{Framework-hypoteesi} \label{fig:UTF}
+\end{figure}
 }
 
 
