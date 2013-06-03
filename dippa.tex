@@ -227,7 +227,6 @@ Wärtislällä jo pystyssä, tekee ongelmasta mielenkiintoisemman
 \begin{tikzpicture}[
     start chain=going below,    % General flow is top-to-bottom
     node distance=6mm and 50mm, % Global setup of box spacing
-    thick,scale=0.4, every node/.style={transform shape}
     ]
 % ------------------------------------------------- 
 \tikzset{
@@ -235,39 +234,45 @@ Wärtislällä jo pystyssä, tekee ongelmasta mielenkiintoisemman
   proc/.style={base, rectangle, minimum height=4em, text width=7em},
   sut/.style={base, circle, text width=5em, fill = blackish, text = white},
   syst/.style={base, cylinder, shape border rotate=90,  aspect=.2, minimum height=5em, text width=5em},
-  file/.style={base, rectangle, shape border rotate=90, minimum height=5em, text width=3em, fill = lightgrey},
+  file/.style={base, rectangle, shape border rotate=90, minimum height=4em, text width=3em, fill = lightgrey},
   data/.style={base, trapezium, trapezium left angle=70, trapezium right angle=-70, minimum height=1cm}, 
-  line/.style={draw, thick, -latex'}
+  line/.style={draw, thick, -latex'},
+  dots/.style={draw, dotted, -latex'}
 }
 % -------------------------------------------------
 % Placing the nodes
-\node [data] (s0) {Production};
-\node [proc] (p0) {Integration test case generation};
-\node [file] (f1) {Test case};
-\node [syst] (e0) {Test case execution engine};
-\node [sut] (s1) {System under test};
-\node [syst] (e1) {Surrogate engine};
-\node [file, right=of s0] (f0) {Model};
-\node [proc, right=of f1] (p1) {Verification};
-\node [file, right=of e0] (f2) {Exe-cution trace};
-\node [proc, right=of s1] (p2) {Trace collecting};
-\node [proc, right=of e1] (p3) {Surrogate generation};
 
-\path [line] (s0) -- (p0);
-\path [line] (p0) -- (f1);
-\path [line] (f1) -- (e0);
-\path [line] (e0) -- (s1);
-\path [line] (s1) -- (e1);
-\path [line] (f0) -- (p0);
-\path [line] (f1) -- (p1);
-\path [line] (p1) -- (e0);
-\path [line] (s1) -- (p2);
-\path [line] (p2) -- (f2);
-\path [line] (f2) -- (p1);
-\path [line] (p3) -- (e1);
+\node [proc] (cap) {Capturing messages};
+\node [proc] (gen) {Integration test case/surrogate generation};
+\node [proc] (upd) {Updating test package/resources};
+% dotted line to test repo, what to do with surrogates/mocksystems
+\node [syst] (db) {Test data base};
+\node [proc] (exe) {Test case execution};
+\node [sut] (sut) {System under test};
+%\node [syst] (eng) {Surrogate execution};
+\node [file, right=of cap] (rec) {Mes-sage record};
+\node [file, rihgt=of gen] (cse) {Case/ surrogate};
+\node [proc, right=of upd] (ver) {Verification};
+\node [file, right=of db] (trc) {Exe-cution trace};
+\node [proc, right=of exe] (col) {Trace collecting};
+%\node [proc, right=of eng] (sgt) {Surrogate generation};
+
+\path [line] (cap) -- (rec);
+\path [line] (rec) -- (gen);
+\path [line] (gen) -- (cse);
+\path [line] (ver) -- (upd); % Todo: what is this?
+%\path [line] (cse) -- (exe);
+\path [line] (cse) -- (2.5,-3) -- (2.5,-8) -- (exe);
+\path [dots] (upd) -- (db);
+\path [line] (exe) -- (sut);
+\path [line] (exe) -- (db);
+\path [line] (exe) -- (col);
+\path [line] (col) -- (sut);
+\path [line] (col) -- (trc);
+\path [line] (trc) -- (ver);
 
 \end{tikzpicture}
-\caption{Framework-hypoteesi} \label{fig:UTF}
+\caption{Framework-malli} \label{fig:UTF}
 \end{figure}
 }
 
