@@ -124,7 +124,41 @@ Työn tavoite on kehittää framework-prototyyppi järjestelmien väliseen integ
 \end{figure}
 
 \frame{\frametitle{Tutkimusmenetelmä}
+\begin{figure}[H]
+\centering
+% =================================================
+\pgfdeclarelayer{marx}
+\pgfsetlayers{main,marx}
+% -------------------------------------------------
+% Start the picture
+\begin{tikzpicture}[
+    start chain=going below,    % General flow is top-to-bottom
+    node distance=6mm and 50mm, % Global setup of box spacing
+    ]
+% ------------------------------------------------- 
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
+  proc/.style={base, rectangle, minimum height=4em, text width=7em},
+  big/.style={base, rectangle, minimum height=8em, text width=10em},
+   line/.style={draw, thick, -latex'}
+}
+% -------------------------------------------------
+% Placing the nodes
 
+\node [proc] (rel) {Practical relevance};
+\node [proc] (con) {Theory connection};
+\node [big, right=of rel, yshift=-1cm] (prb) {Construction, problem solving};
+\node [proc, right=of prb, yshift=1cm] (fun) {Practical functioning};
+\node [proc] (ctr) {Theoretical contribution};
+
+\path [line] (rel) -- (prb);
+\path [line] (prb) -- (fun);
+\path [line] (prb) -- (ctr);
+\path [line] (prb) -- (con);
+
+\end{tikzpicture}
+\caption{Constructive research model adapted from \citet{kasanen1993constructive}} \label{fig:constructive}
+\end{figure}
 }
 
 }
